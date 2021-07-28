@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Poke Dani</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script>
+    function generatePokemonTemplate(name) {
+      const template = `
+        <div class="card-pokemon">
+          <img id="image-${name}" alt="Pokemon Picture" />
+          <h3 id="name-${name}"></h3>
+        </div>
+        `;
+
+      return template;
+    }
+
+    const container = document.querySelector('.container');
+
+    axios.get('https://poke-dani.herokuapp.com/pokemon')
+      .then((response) => {
+        const pokemons = response.data;
+
+        for (const pokemon of pokemons) {
+          container.innerHTML = container.innerHTML + generatePokemonTemplate(pokemon.name);
+
+          document.querySelector(`#image-${pokemon.name}`).src = pokemon.image;
+          document.querySelector(`#name-${pokemon.name}`).innerHTML = pokemon.name;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  </script>
+</body>
+
+</html>
