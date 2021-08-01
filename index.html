@@ -18,11 +18,12 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <script>
-    function generatePokemonTemplate(name) {
+    function generatePokemonTemplate(pokemon) {
       const template = `
         <div class="card-pokemon">
-          <img id="image-${name}" alt="Pokemon Picture" />
-          <h3 id="name-${name}"></h3>
+          <img id="image-${pokemon.name}" alt="Pokemon Picture" />
+          <h3 id="title-${pokemon.name}"></h3>
+          <strong id="type-${pokemon.type}"><strong>
         </div>
         `;
 
@@ -36,10 +37,11 @@
         const pokemons = response.data;
 
         for (const pokemon of pokemons) {
-          container.innerHTML = container.innerHTML + generatePokemonTemplate(pokemon.name);
+          container.innerHTML = container.innerHTML + generatePokemonTemplate(pokemon);
 
           document.querySelector(`#image-${pokemon.name}`).src = pokemon.image;
-          document.querySelector(`#name-${pokemon.name}`).innerHTML = pokemon.name;
+          document.querySelector(`#title-${pokemon.name}`).innerHTML = pokemon.name;
+          document.querySelector(`#type-${pokemon.type}`).innerHTML = pokemon.type;
         }
       })
       .catch((err) => {
