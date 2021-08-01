@@ -10,42 +10,14 @@
 </head>
 
 <body>
-
+  <h1>Poke Dani</h1>
   <div class="container">
-
+    <div class="card">
+      <img id="image" alt="Pokemon Picture" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" />
+      <h3 id="name">Pikachu</h3>
+      <strong id="type">Electric</strong>
+    </div>
   </div>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <script>
-    function generatePokemonTemplate(name) {
-      const template = `
-        <div class="card-pokemon">
-          <img id="image-${name}" alt="Pokemon Picture" />
-          <h3 id="name-${name}"></h3>
-        </div>
-        `;
-
-      return template;
-    }
-
-    const container = document.querySelector('.container');
-
-    axios.get('https://poke-dani.herokuapp.com/pokemon')
-      .then((response) => {
-        const pokemons = response.data;
-
-        for (const pokemon of pokemons) {
-          container.innerHTML = container.innerHTML + generatePokemonTemplate(pokemon.name);
-
-          document.querySelector(`#image-${pokemon.name}`).src = pokemon.image;
-          document.querySelector(`#name-${pokemon.name}`).innerHTML = pokemon.name;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  </script>
 </body>
 
 </html>

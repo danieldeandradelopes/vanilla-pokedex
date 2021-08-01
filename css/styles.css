@@ -1,3 +1,8 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .container {
   display: flex;
   align-items: center;
@@ -5,15 +10,16 @@
   flex-wrap: wrap;
 }
 
-.card-pokemon {
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #dedede;
   border-radius: 7px;
   margin: 5px;
+  padding: 10px 0;
 }
 
-.card-pokemon img {
+.card img {
   width: 250px;
 }
